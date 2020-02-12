@@ -174,6 +174,10 @@ class SpanContext : public opentracing::SpanContext {
             new SpanContext(*this));
     }
 
+    bool IsSampled() const noexcept override {
+      return isSampled();
+    }
+
     friend bool operator==(const SpanContext& lhs, const SpanContext& rhs)
     {
         {
