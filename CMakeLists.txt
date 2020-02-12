@@ -15,8 +15,8 @@ include(HunterGate)
 option(HUNTER_BUILD_SHARED_LIBS "Build Shared Library" ON)
 
 HunterGate(
-    URL "https://github.com/ruslo/hunter/archive/v0.23.201.tar.gz"
-    SHA1 "29f10683f10c7b35e1f599d71542af0c2daa6a01"
+    URL "https://github.com/dqminh/hunter/archive/0.23.245-patch-opentracing.tar.gz"
+    SHA1 "46a65bb8fe8e7c9e0c2241006139c214cb1285fc"
 )
 
 project(jaegertracing VERSION 0.5.0)

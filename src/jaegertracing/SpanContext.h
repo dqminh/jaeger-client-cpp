@@ -19,6 +19,7 @@
 
 #include <iomanip>
 #include <iostream>
+#include <sstream>
 #include <memory>
 #include <mutex>
 #include <string>
@@ -172,6 +173,22 @@ class SpanContext : public opentracing::SpanContext {
         std::lock_guard<std::mutex> lock(_mutex);
         return std::unique_ptr<opentracing::SpanContext>(
             new SpanContext(*this));
+    }
+
+    std::string ToTraceID() const noexcept override {
+      std::ostringstream oss;
+      oss << _traceID;
+      return oss.str();
+    }
+
+    std::string ToSpanID() const noexcept override {
+      std::ostringstream oss;
+      oss << std::hex << _spanID;
+      return oss.str();
+    }
+
+    bool IsSampled() const noexcept override {
+      return isSampled();
     }
 
     friend bool operator==(const SpanContext& lhs, const SpanContext& rhs)
